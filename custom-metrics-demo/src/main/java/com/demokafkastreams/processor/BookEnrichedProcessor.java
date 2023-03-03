@@ -56,7 +56,7 @@ public class BookEnrichedProcessor implements Processor<String, BookEnriched, Vo
         
         //MetricName metricName = metrics.metricName("x-name", "x-group", "x-description");
 
-        MetricName metricName = new MetricName("message-size-max2", "stream-processor-node-metrics","description",metricTags);
+        MetricName metricName = new MetricName("my-process-time", "stream-processor-node-metrics","description",metricTags);
         
         sensorStartTs = streamsMetrics.addSensor("start_ts", Sensor.RecordingLevel.INFO);
         

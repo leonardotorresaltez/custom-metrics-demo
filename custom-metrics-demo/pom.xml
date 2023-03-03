@@ -168,13 +168,7 @@
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-streams</artifactId>
 		</dependency>
-		<!--  
-		<dependency>
-			<groupId>io.github.leofuso</groupId>
-			<artifactId>kafka-streams-actuator</artifactId>
-			<version>v2.7.2.9-SNAPSHOT-jdk11</version>
-		</dependency>
-		-->
+
 		<dependency>
 			<groupId>org.apache.avro</groupId>
 			<artifactId>avro</artifactId>
@@ -189,13 +183,13 @@
 		</dependency>
 		
 		
-     <!--        
+         
 <dependency>
   <groupId>io.micrometer</groupId>
   <artifactId>micrometer-registry-prometheus</artifactId>
  
 </dependency>	
---> 
+
 		<!-- OpenAPI -->
 
 
@@ -212,16 +206,7 @@
 	</dependencies>
 
 	<build>
-	<!-- 
-		<resources>
-			<resource>
-				<directory>${project.basedir}</directory>
-				<includes>
-					<include>resources/avro/*.avsc</include>
-				</includes>
-			</resource>
-		</resources>	
-	 -->	
+	
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -277,6 +262,7 @@
 
 	</build>		  
   	
+  	
 	<repositories>
         <repository>
             <id>confluent</id>
@@ -284,4 +270,5 @@
         </repository>
 
     </repositories>
+   
 </project>
