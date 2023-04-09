@@ -1,4 +1,4 @@
-server.port: 9091
+server.port: 8090
 
 logging:
   level:
@@ -8,7 +8,7 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     streams:
-      application-id: "streams.alertascolacaja.miseventos.v3"
+      application-id: "streams.custom-metrics-demo.v1"
       bootstrap-servers: "localhost:9092"
       properties:
         state.dir: state-dir

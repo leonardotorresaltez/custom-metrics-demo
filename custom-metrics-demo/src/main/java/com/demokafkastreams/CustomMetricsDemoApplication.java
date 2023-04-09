@@ -8,10 +8,10 @@ import org.springframework.kafka.annotation.EnableKafkaStreams;
 @SpringBootApplication
 @EnableKafka
 @EnableKafkaStreams
-public class AlertaColaCajaApplication {
+public class CustomMetricsDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AlertaColaCajaApplication.class, args);
+		SpringApplication.run(CustomMetricsDemoApplication.class, args);
 	}
 
 

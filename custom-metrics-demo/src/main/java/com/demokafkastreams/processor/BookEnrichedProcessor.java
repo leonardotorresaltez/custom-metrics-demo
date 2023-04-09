@@ -5,11 +5,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.kafka.common.MetricName;
-import org.apache.kafka.common.metrics.MetricConfig;
-import org.apache.kafka.common.metrics.Metrics;
 import org.apache.kafka.common.metrics.Sensor;
 import org.apache.kafka.common.metrics.stats.Avg;
-import org.apache.kafka.common.metrics.stats.Min;
 import org.apache.kafka.streams.StreamsMetrics;
 import org.apache.kafka.streams.processor.api.Processor;
 import org.apache.kafka.streams.processor.api.ProcessorContext;
@@ -36,6 +33,8 @@ public class BookEnrichedProcessor implements Processor<String, BookEnriched, Vo
     
     private StreamsMetrics streamsMetrics;
     private Sensor sensorStartTs;
+    
+
 
     public BookEnrichedProcessor(final ApplicationConfig applicationConfig) {
         this.applicationConfig = applicationConfig;
@@ -50,11 +49,7 @@ public class BookEnrichedProcessor implements Processor<String, BookEnriched, Vo
         Map<String, String> metricTags = new HashMap<String, String>();
         metricTags.put("metricTagKey", "metricsTagVal");
         
-        //MetricConfig metricConfig = new MetricConfig().tags(metricTags);
-        //Metrics metrics = new Metrics(metricConfig);
-        
-        
-        //MetricName metricName = metrics.metricName("x-name", "x-group", "x-description");
+
 
         MetricName metricName = new MetricName("my-process-time", "stream-processor-node-metrics","description",metricTags);
         
@@ -62,20 +57,13 @@ public class BookEnrichedProcessor implements Processor<String, BookEnriched, Vo
         
         sensorStartTs.add(metricName, new Avg());
 
-        //sensorStartTs = streamsMetrics.addSensor("start_ts", Sensor.RecordingLevel.INFO);
     	
     }
 
     @Override
     public void process(Record<String, BookEnriched> bookEnriched) {
     	
-    	
-    	//sensorStartTs.a
-    	//sensorStartTs.record(0);
-    	//streamsMetrics.
-        //(streamsMetrics).recordThroughput(sensorStartTs, null);
 
-        //streamsMetrics.
     	long iniTime = System.currentTimeMillis();
         if (Objects.isNull(bookEnriched)) {
             log.error("retailjJdaSapSitesStore is NULL");
@@ -93,12 +81,16 @@ public class BookEnrichedProcessor implements Processor<String, BookEnriched, Vo
             log.error("TaxStatusProcessor - Store=[{}] NOT Found!", categoryId);
             return;
         }
+        
 
         bookEnriched.value().setCategoryName(category.value().getCategoryName());
         bookEnriched.value().setCategoryDescription(category.value().getDescription());
         long elapsedTime = System.currentTimeMillis() - iniTime;
         System.out.println("ElapsedTime - " + elapsedTime);
     	sensorStartTs.record(Long.valueOf(elapsedTime).doubleValue());
+    	
+    	
+    	
 
         
     }
